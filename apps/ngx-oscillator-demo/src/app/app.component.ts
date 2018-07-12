@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { OscillatorService, notes } from '@ngx-oscillator/ngx-oscillator';
+import { Observable, merge, fromEvent, Subscription } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'osc-demo-root',
@@ -21,10 +23,20 @@ export class AppComponent {
     '#B33771'
   ];
   notesNames = Object.keys(notes);
+  mouseClicked = false;
 
-  constructor(private _oscillatorService: OscillatorService) {}
+  constructor(private _oscillatorService: OscillatorService) {
+    document.addEventListener('mousedown', () => (this.mouseClicked = true));
+    document.addEventListener('mouseup', () => (this.mouseClicked = false));
+  }
 
   play(note: string, octave: number) {
     this._oscillatorService.playNote(notes[note], octave);
+  }
+
+  playIfClicked(note: string, octave: number) {
+    if (this.mouseClicked) {
+      this.play(note, octave);
+    }
   }
 }
