@@ -1,0 +1,169 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "",
+  "projects": {
+    "ngx-oscillator-demo": {
+      "root": "apps/ngx-oscillator-demo/",
+      "sourceRoot": "apps/ngx-oscillator-demo/src",
+      "projectType": "application",
+      "prefix": "osc-demo",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/ngx-oscillator-demo",
+            "index": "apps/ngx-oscillator-demo/src/index.html",
+            "main": "apps/ngx-oscillator-demo/src/main.ts",
+            "polyfills": "apps/ngx-oscillator-demo/src/polyfills.ts",
+            "tsConfig": "apps/ngx-oscillator-demo/tsconfig.app.json",
+            "assets": [
+              "apps/ngx-oscillator-demo/src/favicon.ico",
+              "apps/ngx-oscillator-demo/src/assets"
+            ],
+            "styles": [
+              "apps/ngx-oscillator-demo/src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/ngx-oscillator-demo/src/environments/environment.ts",
+                  "with": "apps/ngx-oscillator-demo/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "ngx-oscillator-demo:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "ngx-oscillator-demo:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "ngx-oscillator-demo:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "apps/ngx-oscillator-demo/src/test.ts",
+            "polyfills": "apps/ngx-oscillator-demo/src/polyfills.ts",
+            "tsConfig": "apps/ngx-oscillator-demo/tsconfig.spec.json",
+            "karmaConfig": "apps/ngx-oscillator-demo/karma.conf.js",
+            "styles": [
+              "apps/ngx-oscillator-demo/src/styles.css"
+            ],
+            "scripts": [],
+            "assets": [
+              "apps/ngx-oscillator-demo/src/favicon.ico",
+              "apps/ngx-oscillator-demo/src/assets"
+            ]
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/ngx-oscillator-demo/tsconfig.app.json",
+              "apps/ngx-oscillator-demo/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "ngx-oscillator-demo-e2e": {
+      "root": "apps/ngx-oscillator-demo-e2e/",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "apps/ngx-oscillator-demo-e2e/protractor.conf.js",
+            "devServerTarget": "ngx-oscillator-demo:serve"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "apps/ngx-oscillator-demo-e2e/tsconfig.e2e.json",
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "ngx-oscillator": {
+      "root": "libs/ngx-oscillator",
+      "sourceRoot": "libs/ngx-oscillator/src",
+      "projectType": "library",
+      "prefix": "osc",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "libs/ngx-oscillator/tsconfig.lib.json",
+            "project": "libs/ngx-oscillator/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "project": "libs/ngx-oscillator/ng-package.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libs/ngx-oscillator/src/test.ts",
+            "tsConfig": "libs/ngx-oscillator/tsconfig.spec.json",
+            "karmaConfig": "libs/ngx-oscillator/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/ngx-oscillator/tsconfig.lib.json",
+              "libs/ngx-oscillator/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "warnings": {
+      "typescriptMismatch": false,
+      "versionMismatch": false
+    },
+    "defaultCollection": "@nrwl/schematics"
+  },
+  "defaultProject": "ngx-oscillator-demo"
+}

@@ -1,0 +1,21 @@
+{
+  "npmScope": "ngx-oscillator",
+  "implicitDependencies": {
+    "angular.json": "*",
+    "package.json": "*",
+    "tsconfig.json": "*",
+    "tslint.json": "*",
+    "nx.json": "*"
+  },
+  "projects": {
+    "ngx-oscillator-demo": {
+      "tags": []
+    },
+    "ngx-oscillator-demo-e2e": {
+      "tags": []
+    },
+    "ngx-oscillator": {
+      "tags": []
+    }
+  }
+}
