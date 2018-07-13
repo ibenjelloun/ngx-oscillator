@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { oscillatorTypes, NOTES_COUNT, notes } from '../model';
+import { oscillatorTypes, NOTES_COUNT, notesFrequencies } from '../model';
 
 @Injectable()
 export class OscillatorService {
@@ -30,8 +30,8 @@ export class OscillatorService {
     const o = {};
     scale.forEach(_ => {
       const v = (_ + note);
-      const key = Object.keys(notes)[v % NOTES_COUNT];
-      o[key] = v >= NOTES_COUNT ? notes[key] * 2 : notes[key];
+      const key = Object.keys(notesFrequencies)[v % NOTES_COUNT];
+      o[key] = v >= NOTES_COUNT ? notesFrequencies[key] * 2 : notesFrequencies[key];
     });
     return o;
   }

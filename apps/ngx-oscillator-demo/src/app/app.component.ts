@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { OscillatorService, notesFrequencies, scales, notes } from 'ngx-oscillator';
+import { OscillatorService, scales, notes } from 'ngx-oscillator';
 
 @Component({
   selector: 'osc-demo-root',

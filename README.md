@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/ibenjelloun/ngx-oscillator.svg?branch=master)](https://travis-ci.org/ibenjelloun/ngx-oscillator)
+
 # NgxOscillator
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) using [Nrwl Nx](https://nrwl.io/nx).
