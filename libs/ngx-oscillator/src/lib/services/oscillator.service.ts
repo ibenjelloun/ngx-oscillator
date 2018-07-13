@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { oscillatorTypes, NOTES_COUNT } from '../model';
-import { notes } from 'dist/ngx-oscillator';
+import { oscillatorTypes, NOTES_COUNT, notes } from '../model';
 
 @Injectable()
 export class OscillatorService {
