@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { oscillatorTypes } from '../model';
+import { oscillatorTypes, NOTES_COUNT } from '../model';
+import { notes } from 'dist/ngx-oscillator';
 
 @Injectable()
 export class OscillatorService {
@@ -24,5 +25,15 @@ export class OscillatorService {
     g.gain.exponentialRampToValueAtTime(0.00001, this.context.currentTime + time);
     o.start();
     o.stop(this.context.currentTime + time)
+  }
+
+  public getScale(scale: number[], note: number) {
+    const o = {};
+    scale.forEach(_ => {
+      const v = (_ + note);
+      const key = Object.keys(notes)[v % NOTES_COUNT];
+      o[key] = v >= NOTES_COUNT ? notes[key] * 2 : notes[key];
+    });
+    return o;
   }
 }

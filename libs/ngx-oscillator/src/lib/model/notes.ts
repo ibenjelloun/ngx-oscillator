@@ -1,4 +1,4 @@
-export const notes = {
+export const notesFrequencies = {
   C: 16.35,
   Cs: 17.32,
   D: 18.35,
@@ -12,3 +12,21 @@ export const notes = {
   Bb: 29.14,
   B: 30.87
 };
+
+
+export const notes = {
+  C: 0,
+  Cs: 1,
+  D: 2,
+  Eb: 3,
+  E: 4,
+  F: 5,
+  Fs: 6,
+  G: 7,
+  Gs: 8,
+  A: 9,
+  Bb: 10,
+  B: 11
+}
+
+export const NOTES_COUNT = 12;

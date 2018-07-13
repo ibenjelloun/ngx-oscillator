@@ -16,7 +16,7 @@
     ],
     "baseUrl": ".",
     "paths": {
-      "@ngx-oscillator/ngx-oscillator": [
+      "ngx-oscillator": [
         "libs/ngx-oscillator/src/index.ts"
       ]
     }
