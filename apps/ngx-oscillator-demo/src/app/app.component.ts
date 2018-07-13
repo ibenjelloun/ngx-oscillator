@@ -26,8 +26,11 @@ export class AppComponent {
   allNotesNames = Object.keys(notes);
   allScalesNames = Object.keys(scales);
 
+  currentScale = 'Major';
+  currentNote = 'A';
+
   constructor(private _oscillatorService: OscillatorService) {
-    this.changeToAllNotes();
+    this.onScaleOrNoteChange();
     document.addEventListener('mousedown', () => (this.mouseClicked = true));
     document.addEventListener('mouseup', () => (this.mouseClicked = false));
   }
@@ -42,13 +45,12 @@ export class AppComponent {
     }
   }
 
-  changeToAllNotes() {
-    this.currentNotes = notesFrequencies;
-    this.notesNames = Object.keys(this.currentNotes);
-  }
-
   changeScale(scale: string, note: string) {
     this.currentNotes = this._oscillatorService.getScale(scales[scale], notes[note]);
     this.notesNames = Object.keys(this.currentNotes);
+  }
+
+  onScaleOrNoteChange() {
+    this.changeScale(this.currentScale, this.currentNote);
   }
 }

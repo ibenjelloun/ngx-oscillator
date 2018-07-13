@@ -1,8 +1,13 @@
-<ng-container *ngFor="let s of allScalesNames">
-  <ng-container *ngFor="let n of allNotesNames">
-      <button (click)="changeScale(s, n)">{{s}} {{n}}</button>
-  </ng-container>
-</ng-container>
+Scale :
+<select (change)="onScaleOrNoteChange()" [(ngModel)]="currentScale">
+  <option *ngFor="let s of allScalesNames" value="{{s}}">{{s}}</option>
+</select>
+
+Note :
+<select (change)="onScaleOrNoteChange()" [(ngModel)]="currentNote">
+  <option *ngFor="let n of allNotesNames" value="{{n}}">{{n}}</option>
+</select>
+
 <div class="octaves-container noselect">
   <div class="octave-container" *ngFor="let o of [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]">
     <div [ngStyle]="{'background-color': colors[o] }" class="key" *ngFor="let n of notesNames" (click)="play(n, o)" (mouseover)="playIfClicked(n, o)">
