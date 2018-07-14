@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { OscillatorService, scales, notes } from 'ngx-oscillator';
+import { OscillatorService, scales, notes, oscillatorTypes } from 'ngx-oscillator';
 
 @Component({
   selector: 'osc-demo-root',
@@ -25,9 +25,12 @@ export class AppComponent {
 
   allNotesNames = Object.keys(notes);
   allScalesNames = Object.keys(scales);
+  allOscillatorType = Object.keys(oscillatorTypes);
 
   currentScale = 'Major';
   currentNote = 'A';
+  currentType = 'sine';
+  currentTime = 2;
 
   constructor(private _oscillatorService: OscillatorService) {
     this.onScaleOrNoteChange();
@@ -52,5 +55,13 @@ export class AppComponent {
 
   onScaleOrNoteChange() {
     this.changeScale(this.currentScale, this.currentNote);
+  }
+
+  onOscillatorTypeChange() {
+    this._oscillatorService.setOscillatorType(oscillatorTypes[this.currentType]);
+  }
+
+  onTimeChange() {
+    this._oscillatorService.setTime(this.currentTime);
   }
 }

@@ -8,6 +8,13 @@ Note :
   <option *ngFor="let n of allNotesNames" value="{{n}}">{{n}}</option>
 </select>
 
+Oscillator Type :
+<select (change)="onOscillatorTypeChange()" [(ngModel)]="currentType">
+  <option *ngFor="let o of allOscillatorType" value="{{o}}">{{o}}</option>
+</select>
+
+Time :
+<input type="number" [(ngModel)]="currentTime" (change)="onTimeChange()">
 <div class="octaves-container noselect">
   <div class="octave-container" *ngFor="let o of [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]">
     <div [ngStyle]="{'background-color': colors[o] }" class="key" *ngFor="let n of notesNames" (click)="play(n, o)" (mouseover)="playIfClicked(n, o)">
