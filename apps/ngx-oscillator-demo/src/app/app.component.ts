@@ -1,5 +1,11 @@
 import { Component } from '@angular/core';
-import { OscillatorService, scales, notes, oscillatorTypes } from 'ngx-oscillator';
+import {
+  OscillatorService,
+  scales,
+  notes,
+  oscillatorTypes,
+  notesFrequencies
+} from 'ngx-oscillator';
 
 @Component({
   selector: 'osc-demo-root',
@@ -30,7 +36,10 @@ export class AppComponent {
   currentScale = 'Major';
   currentNote = 'A';
   currentType = 'sine';
-  currentTime = 2;
+  currentTime = 0.2;
+  currentGain = 1;
+
+  current: { oscillator: any; gain: any };
 
   constructor(private _oscillatorService: OscillatorService) {
     this.onScaleOrNoteChange();
@@ -39,7 +48,10 @@ export class AppComponent {
   }
 
   play(note: string, octave: number) {
-    this._oscillatorService.playNote(this.currentNotes[note], octave);
+    this.current = this._oscillatorService.playNote(
+      this.currentNotes[note],
+      octave
+    );
   }
 
   playIfClicked(note: string, octave: number) {
@@ -48,8 +60,24 @@ export class AppComponent {
     }
   }
 
+  playMelody() {
+    this._oscillatorService.playMelody({
+      notes: [
+        { note: notesFrequencies.A, octave: 5, time: 0.2 },
+        { note: notesFrequencies.C, octave: 5, time: 0.3 },
+        { note: notesFrequencies.D, octave: 5, time: 0.2 },
+        { note: notesFrequencies.Eb, octave: 5, time: 0.6 },
+        { note: notesFrequencies.E, octave: 5, time: 0.3 },
+        { note: notesFrequencies.G, octave: 5, time: 0.2 }
+      ]
+    });
+  }
+
   changeScale(scale: string, note: string) {
-    this.currentNotes = this._oscillatorService.getScale(scales[scale], notes[note]);
+    this.currentNotes = this._oscillatorService.getScale(
+      scales[scale],
+      notes[note]
+    );
     this.notesNames = Object.keys(this.currentNotes);
   }
 
@@ -58,10 +86,16 @@ export class AppComponent {
   }
 
   onOscillatorTypeChange() {
-    this._oscillatorService.setOscillatorType(oscillatorTypes[this.currentType]);
+    this._oscillatorService.setOscillatorType(
+      oscillatorTypes[this.currentType]
+    );
   }
 
   onTimeChange() {
     this._oscillatorService.setTime(this.currentTime);
+  }
+
+  onGainChange() {
+    this._oscillatorService.setGain(this.currentGain);
   }
 }

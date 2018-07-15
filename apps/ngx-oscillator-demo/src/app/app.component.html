@@ -14,7 +14,19 @@ Oscillator Type :
 </select>
 
 Time :
-<input type="number" [(ngModel)]="currentTime" (change)="onTimeChange()">
+<input type="range" min="0" max="2" [(ngModel)]="currentTime" (change)="onTimeChange()" step="0.1">
+
+Gain :
+<input type="range" min="0" max="50" [(ngModel)]="currentGain" (change)="onGainChange()">
+
+<br/>
+Live Frequency :
+<input type="range" min="0" max="10000" [(ngModel)]="current?.oscillator.frequency.value">
+
+Live Gain :
+<input type="range" min="0" max="10000" [(ngModel)]="current?.gain.value">
+
+<button (click)="playMelody()">Play Melody</button>
 <div class="octaves-container noselect">
   <div class="octave-container" *ngFor="let o of [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]">
     <div [ngStyle]="{'background-color': colors[o] }" class="key" *ngFor="let n of notesNames" (click)="play(n, o)" (mouseover)="playIfClicked(n, o)">
