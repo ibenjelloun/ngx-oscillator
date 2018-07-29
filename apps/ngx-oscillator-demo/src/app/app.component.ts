@@ -28,6 +28,7 @@ export class AppComponent {
   currentNotes: any;
   notesNames;
   mouseClicked = false;
+  continious = true;
 
   allNotesNames = Object.keys(notes);
   allScalesNames = Object.keys(scales);
@@ -48,10 +49,18 @@ export class AppComponent {
   }
 
   play(note: string, octave: number) {
-    this.current = this._oscillatorService.playNote(
-      this.currentNotes[note],
-      octave
-    );
+    if(this.continious) {
+      this._oscillatorService.playNoteC(
+        this.currentNotes[note],
+        octave
+      );
+    } else {
+      this.current = this._oscillatorService.playNote(
+        this.currentNotes[note],
+        octave
+      );
+    }
+
   }
 
   playIfClicked(note: string, octave: number) {
@@ -63,12 +72,14 @@ export class AppComponent {
   playMelody() {
     this._oscillatorService.playMelody({
       notes: [
-        { note: notesFrequencies.A, octave: 5, time: 0.2 },
-        { note: notesFrequencies.C, octave: 5, time: 0.3 },
+        { note: notesFrequencies.D, octave: 5, time: 0.4 },
         { note: notesFrequencies.D, octave: 5, time: 0.2 },
-        { note: notesFrequencies.Eb, octave: 5, time: 0.6 },
-        { note: notesFrequencies.E, octave: 5, time: 0.3 },
-        { note: notesFrequencies.G, octave: 5, time: 0.2 }
+        { note: notesFrequencies.D, octave: 5, time: 0.2 },
+        { note: notesFrequencies.D, octave: 5, time: 0.3 },
+        { note: notesFrequencies.Cs, octave: 5, time: 0.3 },
+        { note: notesFrequencies.B, octave: 4, time: 0.5 },
+        { note: notesFrequencies.A, octave: 4, time: 0.2 },
+        { note: notesFrequencies.A, octave: 4, time: 0.2 }
       ]
     });
   }
@@ -97,5 +108,9 @@ export class AppComponent {
 
   onGainChange() {
     this._oscillatorService.setGain(this.currentGain);
+  }
+
+  stop() {
+    this._oscillatorService.stopC();
   }
 }
