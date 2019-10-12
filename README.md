@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/ibenjelloun/ngx-oscillator.svg?branch=master)](https://travis-ci.org/ibenjelloun/ngx-oscillator)
+[![Build Status](https://travis-ci.org/ibenjelloun/ngx-oscillator.svg?branch=master)](https://travis-ci.org/ibenjelloun/ngx-oscillator) [![Greenkeeper badge](https://badges.greenkeeper.io/ibenjelloun/ngx-oscillator.svg)](https://greenkeeper.io/)
 
 # NgxOscillator
 
