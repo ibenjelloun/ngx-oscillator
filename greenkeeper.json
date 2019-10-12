@@ -1,0 +1,10 @@
+{
+  "groups": {
+    "default": {
+      "packages": [
+        "libs/ngx-oscillator/package.json",
+        "package.json"
+      ]
+    }
+  }
+}
